@@ -101,6 +101,17 @@ typedef enum
   WIN_SPLIT_TOP_FULL = 2	/* src window is 100% of screen */
 } WIN_SPLIT_TYPE;
 
+/** window split orientation type enumeration
+ *  
+ *  SPLIT_VERTICAL and SPLIT_HORIZONTAL refer to the orientation
+ *  of the split between the source and GDB windows.
+ */
+typedef enum
+{ 
+  SPLIT_HORIZONTAL = 0,	    /* source above and GDB below (default) */
+  SPLIT_VERTICAL = 1	    /* source left and GDB right            */
+} SPLIT_ORIENTATION_TYPE;
+
 /** All of the different configuration options */
 enum cgdbrc_option_kind
 {
@@ -117,6 +128,7 @@ enum cgdbrc_option_kind
   CGDBRC_TTIMEOUT_LEN,
   CGDBRC_WINMINHEIGHT,
   CGDBRC_WINSPLIT,
+  CGDBRC_SPLITORIENTATION,
   CGDBRC_WRAPSCAN
 };
 
@@ -144,6 +156,8 @@ struct cgdbrc_config_option
     enum tokenizer_language_support language_support_val;
     /* option_kind == CGDBRC_WINSPLIT */
     WIN_SPLIT_TYPE win_split_val;
+    /* option_kind == CGDBRC_WINORIENTATION */
+    SPLIT_ORIENTATION_TYPE win_orientation_val;
   } variant;
 };
 
